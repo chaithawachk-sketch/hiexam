@@ -6,35 +6,48 @@
   <!-- Google Fonts: Kanit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --primary: #f59e0b;
-      --primary-rgb: 245, 158, 11;
-      --primary-dark: #d97706;
-      --bg-color: #0c0a09;
-      --bg-gradient: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.08) 0%, #0c0a09 75%);
-      --card-bg: rgba(23, 20, 18, 0.75);
-      --modal-bg: #14110f;
-      --input-bg: #0f0d0c;
-      --text-main: #f5f5f4;
-      --text-muted: #a8a29e;
-      --border-color: rgba(245, 158, 11, 0.18);
-      --remark-color: #38bdf8;
+      --primary: #ffb703;
+      --primary-rgb: 255, 183, 3;
+      --primary-dark: #fb8500;
+      --bg-color: #000000;
+      --card-bg: #0a0a0a;
+      --modal-bg: #121212;
+      --input-bg: #050505;
+      --text-main: #ffffff;
+      --text-muted: #d4d4d8;
+      --border-color: rgba(255, 183, 3, 0.55);
+      --remark-color: #fde047;
+      --remark-bg: rgba(253, 224, 71, 0.12);
       --ui-scale: 1;
+      
+      /* สีแดงแจ้งเตือน */
+      --danger-color: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --warning-color: #eab308;
+      --warning-bg: rgba(234, 179, 8, 0.15);
     }
 
     body.light-mode {
-      --bg-color: #fcfbf9;
-      --bg-gradient: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.12) 0%, #f4f1ea 75%);
-      --card-bg: rgba(255, 255, 255, 0.85);
+      /* ปลดล็อกการตั้งค่าสีตายตัวออก เพื่อให้สามารถกดเปลี่ยนสีได้ */
+      --bg-color: #ffffff;
+      --card-bg: #f8fafc;
       --modal-bg: #ffffff;
-      --input-bg: #fafaf9;
-      --text-main: #1c1917;
-      --text-muted: #78716c;
-      --border-color: rgba(245, 158, 11, 0.25);
-      --remark-color: #0284c7;
+      --input-bg: #f1f5f9;
+      --text-main: #000000;
+      --text-muted: #334155;
+      --border-color: #cbd5e1;
+      --remark-color: #b91c1c;
+      --remark-bg: #fef2f2;
+
+      /* สีแดงแจ้งเตือนในโหมดสว่างให้เข้มขึ้นเพื่อให้ตัดกับพื้นขาว */
+      --danger-color: #dc2626;
+      --danger-bg: #fef2f2;
+      --warning-color: #d97706;
+      --warning-bg: #fffbeb;
     }
 
     * {
@@ -47,7 +60,6 @@
     body {
       font-family: 'Kanit', sans-serif;
       background-color: var(--bg-color);
-      background-image: var(--bg-gradient);
       color: var(--text-main);
       height: 100vh;
       width: 100vw;
@@ -55,7 +67,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     /* ===== TOP NAVBAR ===== */
@@ -63,15 +75,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 36px;
+      padding: 14px 32px;
       z-index: 10;
-      border-bottom: 1px solid var(--border-color);
-      background: rgba(12, 10, 9, 0.4);
-      backdrop-filter: blur(12px);
-    }
-
-    body.light-mode .navbar {
-      background: rgba(252, 251, 249, 0.6);
+      border-bottom: 2px solid var(--border-color);
+      background: var(--card-bg);
     }
 
     .brand {
@@ -81,20 +88,19 @@
     }
 
     .brand-logo {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      width: 52px;
+      height: 52px;
+      background: var(--primary);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.35);
     }
 
     .brand-logo-text {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #0c0a09;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #000000;
       letter-spacing: -0.5px;
     }
 
@@ -105,26 +111,25 @@
     }
 
     .brand-faculty {
-      font-size: 1.15rem;
-      font-weight: 700;
+      font-size: 1.35rem;
+      font-weight: 800;
       color: var(--text-main);
-      letter-spacing: 0.3px;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .brand-univ {
-      font-size: 0.8rem;
-      font-weight: 500;
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--primary);
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .brand-appname {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
+      font-weight: 600;
       color: var(--text-muted);
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-top: 1px;
     }
 
     .controls {
@@ -137,16 +142,11 @@
     .pill-group {
       display: flex;
       align-items: center;
-      background: rgba(30, 26, 23, 0.6);
-      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      border: 2px solid var(--border-color);
       border-radius: 999px;
       padding: 4px 12px;
       gap: 8px;
-      backdrop-filter: blur(8px);
-    }
-
-    body.light-mode .pill-group {
-      background: rgba(255, 255, 255, 0.8);
     }
 
     .ctrl-btn {
@@ -154,8 +154,9 @@
       border: none;
       color: var(--text-main);
       font-family: 'Kanit', sans-serif;
-      font-size: 0.85rem;
-      padding: 5px 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 5px 12px;
       border-radius: 999px;
       cursor: pointer;
       display: flex;
@@ -165,24 +166,24 @@
     }
 
     .ctrl-btn:hover {
-      background: rgba(var(--primary-rgb), 0.15);
+      background: rgba(var(--primary-rgb), 0.2);
       color: var(--primary);
     }
 
     .ctrl-btn.active {
-      background: rgba(var(--primary-rgb), 0.25);
-      color: var(--primary);
-      font-weight: 600;
+      background: var(--primary);
+      color: #000000;
+      font-weight: 700;
     }
 
     /* Theme Color Dots */
     .theme-dot {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       cursor: pointer;
       border: 2px solid transparent;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.2s;
     }
 
     .theme-dot:hover {
@@ -190,14 +191,13 @@
     }
 
     .theme-dot.active {
-      border-color: #ffffff;
+      border-color: var(--text-main);
       transform: scale(1.15);
-      box-shadow: 0 0 10px currentColor;
     }
 
     .color-picker-input {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       border: none;
       background: none;
       cursor: pointer;
@@ -211,32 +211,30 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px 40px;
+      padding: 16px 32px;
       transform: scale(var(--ui-scale));
       transform-origin: center center;
       transition: transform 0.2s ease;
       width: 100%;
-      max-width: 1600px;
+      max-width: 1750px;
       margin: 0 auto;
-      gap: 24px;
+      gap: 20px;
     }
 
     /* TOP SECTION: Clock & Countdowns */
     .dashboard-top {
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
-      gap: 36px;
+      gap: 24px;
       width: 100%;
     }
 
     .dash-box {
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      border: 3px solid var(--border-color);
       border-radius: 24px;
-      padding: 24px 44px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(16px);
+      padding: 22px 36px;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -245,50 +243,48 @@
     }
 
     .main-clock-card {
-      flex: 1.4;
+      flex: 1.35;
     }
 
     .main-clock {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 6.2rem;
-      font-weight: 700;
+      font-size: 7.2rem;
+      font-weight: 800;
       color: var(--primary);
       line-height: 1;
       letter-spacing: -2px;
-      text-shadow: 0 0 35px rgba(var(--primary-rgb), 0.35);
     }
 
     .no-exam-mode .main-clock {
-      font-size: 8rem;
+      font-size: 9.5rem;
     }
 
     .date-text {
-      font-size: 1.4rem;
-      font-weight: 500;
-      margin-top: 8px;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-top: 16px;
       color: var(--text-main);
     }
 
     .sub-notice {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-top: 10px;
-      padding: 6px 22px;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-color);
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 20px;
+      padding: 12px 36px;
+      border-radius: 999px;
+      background: rgba(var(--primary-rgb), 0.15);
+      border: 2px solid var(--border-color);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      transition: all 0.4s ease;
+      gap: 12px;
     }
 
     .sub-notice.can-submit {
-      background: rgba(34, 197, 94, 0.15);
-      border-color: #22c55e;
-      color: #4ade80;
-      font-weight: 600;
-      box-shadow: 0 0 25px rgba(34, 197, 94, 0.3);
+      background: #16a34a;
+      border-color: #4ade80;
+      color: #ffffff;
+      font-weight: 800;
       animation: pulseBadge 2s infinite;
     }
 
@@ -302,58 +298,59 @@
     .countdown-box {
       flex: 1;
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      border: 3px solid var(--border-color);
       border-radius: 24px;
-      padding: 22px 20px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(16px);
+      padding: 20px 28px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       position: relative;
+      transition: all 0.3s ease;
     }
 
     .cd-room-tag {
       display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--primary);
-      background: rgba(var(--primary-rgb), 0.15);
-      border: 1px solid rgba(var(--primary-rgb), 0.35);
-      padding: 2px 12px;
+      align-self: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #000000;
+      background: var(--primary);
+      padding: 2px 16px;
       border-radius: 99px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .cd-title {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.65rem;
+      font-weight: 700;
       color: var(--text-main);
     }
 
     .cd-timer {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 2.6rem;
-      font-weight: 700;
+      font-size: 4.4rem;
+      font-weight: 800;
       color: var(--primary);
       margin: 4px 0;
-      text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.3);
+      line-height: 1.1;
+      transition: color 0.3s ease;
     }
 
     .cd-status {
-      font-size: 0.85rem;
+      font-size: 1.3rem;
+      font-weight: 600;
       color: var(--text-muted);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
     }
 
     .cd-progress-bg {
       width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.1);
+      height: 14px;
+      background: rgba(128, 128, 128, 0.25);
       border-radius: 99px;
       overflow: hidden;
-    }
-
-    body.light-mode .cd-progress-bg {
-      background: rgba(0, 0, 0, 0.1);
     }
 
     .cd-progress-bar {
@@ -361,18 +358,48 @@
       width: 100%;
       background: var(--primary);
       border-radius: 99px;
-      box-shadow: 0 0 10px var(--primary);
-      transition: width 0.5s ease;
+      transition: width 0.5s ease, background-color 0.3s ease;
     }
 
-    .countdown-box.warn-15 .cd-timer { color: #facc15; }
-    .countdown-box.warn-15 .cd-progress-bar { background: #facc15; }
-    .countdown-box.warn-5 .cd-timer { color: #fb923c; animation: urgentBlink 1s infinite alternate; }
-    .countdown-box.warn-5 .cd-progress-bar { background: #fb923c; }
-    .countdown-box.time-up .cd-timer { color: #ef4444; }
-    .countdown-box.time-up .cd-progress-bar { background: #ef4444; }
+    /* สไตล์แจ้งเตือนเวลา (15 นาที และ 5 นาที) */
+    .countdown-box.warn-15 { 
+        border-color: var(--warning-color); 
+        background: var(--warning-bg); 
+    }
+    .countdown-box.warn-15 .cd-timer, 
+    .countdown-box.warn-15 .cd-status { 
+        color: var(--warning-color); 
+    }
+    .countdown-box.warn-15 .cd-progress-bar { 
+        background: var(--warning-color); 
+    }
 
-    /* BOTTOM SECTION: Exam Info Cards (ปรับให้สวยงามสมส่วนเมื่อเอาชื่อวิชาออก) */
+    /* 5 นาทีสุดท้าย: สีแดงเข้ม เด่นชัด กระพริบ */
+    .countdown-box.warn-5 { 
+        border-color: var(--danger-color); 
+        background: var(--danger-bg); 
+    }
+    .countdown-box.warn-5 .cd-timer, 
+    .countdown-box.warn-5 .cd-status { 
+        color: var(--danger-color); 
+        animation: urgentBlinkRed 1s infinite alternate; 
+    }
+    .countdown-box.warn-5 .cd-progress-bar { 
+        background: var(--danger-color); 
+    }
+
+    .countdown-box.time-up { 
+        border-color: var(--danger-color); 
+    }
+    .countdown-box.time-up .cd-timer, 
+    .countdown-box.time-up .cd-status { 
+        color: var(--danger-color); 
+    }
+    .countdown-box.time-up .cd-progress-bar { 
+        background: var(--danger-color); 
+    }
+
+    /* BOTTOM SECTION: Exam Info Cards */
     .cards-wrapper {
       width: 100%;
       display: none;
@@ -382,33 +409,31 @@
     .exam-card {
       flex: 1;
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-top: 4px solid var(--primary);
-      border-radius: 20px;
-      padding: 24px 36px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(16px);
+      border: 3px solid var(--border-color);
+      border-top: 8px solid var(--primary);
+      border-radius: 24px;
+      padding: 26px 40px;
       position: relative;
     }
 
     .card-badge {
       position: absolute;
-      top: 18px;
+      top: 16px;
       right: 24px;
-      background: rgba(var(--primary-rgb), 0.15);
-      color: var(--primary);
-      border: 1px solid rgba(var(--primary-rgb), 0.35);
-      padding: 4px 16px;
+      background: var(--primary);
+      color: #000000;
+      padding: 4px 18px;
       border-radius: 99px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 1.1rem;
+      font-weight: 800;
     }
 
     .info-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1.2fr 1fr;
-      row-gap: 16px;
+      grid-template-columns: 1fr 1fr 1.25fr 1fr;
+      row-gap: 18px;
       column-gap: 28px;
+      align-items: start;
     }
 
     .info-item {
@@ -417,62 +442,73 @@
     }
 
     .info-label {
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 1.25rem;
+      font-weight: 700;
       color: var(--primary);
-      margin-bottom: 2px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      margin-bottom: 4px;
     }
 
     .info-val {
-      font-size: 1.65rem;
-      font-weight: 600;
+      font-size: 2.65rem;
+      font-weight: 800;
       color: var(--text-main);
-      line-height: 1.25;
+      line-height: 1.15;
       word-break: break-word;
     }
 
+    .ab-active .info-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
     .ab-active .info-val {
-      font-size: 1.35rem;
+      font-size: 2rem;
     }
 
     .info-remark {
       grid-column: 1 / -1;
-      padding-top: 10px;
-      border-top: 1px dashed var(--border-color);
+      margin-top: 6px;
+      padding: 14px 22px;
+      background: var(--remark-bg);
+      border: 2px solid var(--remark-color);
+      border-radius: 16px;
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .info-remark .info-label {
       margin-bottom: 0;
-      min-width: 80px;
+      font-size: 1.35rem;
+      color: var(--remark-color);
+      white-space: nowrap;
     }
 
     .info-remark .info-val {
       color: var(--remark-color);
-      font-size: 1.3rem;
-      font-weight: 500;
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    @keyframes urgentBlink {
+    .ab-active .info-remark .info-val {
+      font-size: 1.5rem;
+    }
+
+    @keyframes urgentBlinkRed {
       from { opacity: 1; transform: scale(1); }
-      to { opacity: 0.7; transform: scale(1.02); }
+      to { opacity: 0.65; transform: scale(1.02); }
     }
     @keyframes pulseBadge {
-      0%, 100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); }
-      50% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.7); }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
     }
 
     /* ===== ANIMATION ALERT OVERLAY ===== */
     .alert-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.88);
       display: none;
       justify-content: center;
       align-items: center;
@@ -487,161 +523,160 @@
 
     .alert-card {
       background: var(--modal-bg);
-      border: 2px solid var(--primary);
+      border: 4px solid var(--primary);
       border-radius: 28px;
-      padding: 42px 56px;
+      padding: 48px 60px;
       text-align: center;
-      max-width: 720px;
+      max-width: 820px;
       width: 100%;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.85);
-      animation: popBounce 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      animation: popBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
-    .alert-icon { font-size: 5.5rem; line-height: 1; margin-bottom: 18px; display: inline-block; }
-    .alert-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
-    .alert-desc { font-size: 1.35rem; color: var(--text-muted); margin-bottom: 26px; }
+    .alert-icon { font-size: 6rem; line-height: 1; margin-bottom: 18px; display: inline-block; }
+    .alert-title { font-size: 3.2rem; font-weight: 800; margin-bottom: 12px; color: var(--primary); }
+    .alert-desc { font-size: 1.8rem; font-weight: 600; color: var(--text-main); margin-bottom: 30px; }
     .alert-close-btn {
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid var(--primary);
-      color: var(--primary);
+      background: var(--primary);
+      border: none;
+      color: #000000;
       font-family: 'Kanit', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 10px 30px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      padding: 12px 36px;
       border-radius: 99px;
       cursor: pointer;
-      transition: all 0.2s;
     }
-    .alert-close-btn:hover { background: var(--primary); color: #0c0a09; }
     .alert-timer-bar {
-      position: absolute; bottom: 0; left: 0; height: 6px; width: 100%;
+      position: absolute; bottom: 0; left: 0; height: 10px; width: 100%;
       background: var(--primary); transform-origin: left;
       animation: shrinkBar 8s linear forwards;
     }
 
     @keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
     @keyframes popBounce {
-      0% { transform: scale(0.65); opacity: 0; }
-      70% { transform: scale(1.04); opacity: 1; }
+      0% { transform: scale(0.7); opacity: 0; }
+      70% { transform: scale(1.03); opacity: 1; }
       100% { transform: scale(1); opacity: 1; }
     }
     @keyframes shrinkBar { from { transform: scaleX(1); } to { transform: scaleX(0); } }
 
     /* ===== SETTINGS MODAL ===== */
     .modal-backdrop {
-      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(8px); display: none; justify-content: center;
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
+      display: none; justify-content: center;
       align-items: center; z-index: 100; padding: 20px;
     }
     .modal-backdrop.show { display: flex; }
     .modal-content {
-      background: var(--modal-bg); border: 1px solid var(--border-color);
+      background: var(--modal-bg); border: 2px solid var(--border-color);
       border-radius: 24px; width: 100%; max-width: 900px; max-height: 94vh;
-      overflow-y: auto; padding: 32px; box-shadow: 0 25px 70px rgba(0,0,0,0.8);
-      position: relative;
+      overflow-y: auto; padding: 32px; position: relative;
     }
     .modal-close {
       position: absolute; top: 24px; right: 28px; background: none; border: none;
-      color: var(--text-muted); font-size: 1.5rem; cursor: pointer;
+      color: var(--text-muted); font-size: 1.8rem; cursor: pointer;
     }
-    .modal-close:hover { color: var(--text-main); }
-    .modal-title { font-size: 1.75rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
-    .modal-subtitle { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; }
+    .modal-title { font-size: 1.85rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .modal-subtitle { font-size: 1rem; color: var(--text-muted); margin-bottom: 20px; }
 
     .mode-tabs {
-      display: flex; background: var(--input-bg); border: 1px solid var(--border-color);
+      display: flex; background: var(--input-bg); border: 2px solid var(--border-color);
       border-radius: 14px; padding: 6px; margin-bottom: 24px;
     }
     .mode-tab {
       flex: 1; text-align: center; padding: 12px; border-radius: 10px;
-      font-weight: 600; cursor: pointer; color: var(--text-muted); transition: all 0.2s;
+      font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all 0.2s;
     }
     .mode-tab.active {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #0c0a09; box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.35);
+      background: var(--primary);
+      color: #000000;
     }
 
     .form-single { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; row-gap: 16px; }
     .form-ab { display: none; grid-template-columns: 1fr 1fr; gap: 28px; }
     .ab-col { display: flex; flex-direction: column; gap: 14px; }
-    .ab-col:first-child { border-right: 1px solid var(--border-color); padding-right: 28px; }
+    .ab-col:first-child { border-right: 2px solid var(--border-color); padding-right: 28px; }
 
     .room-pill {
       display: inline-block; align-self: flex-start;
-      background: rgba(var(--primary-rgb), 0.15); color: var(--primary);
-      border: 1px solid rgba(var(--primary-rgb), 0.35); padding: 4px 16px;
-      border-radius: 99px; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;
+      background: var(--primary); color: #000000;
+      padding: 4px 16px; border-radius: 99px; font-weight: 800; font-size: 0.95rem;
     }
     .field-group { display: flex; flex-direction: column; gap: 6px; }
-    .field-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .field-label { font-size: 0.95rem; font-weight: 600; color: var(--primary); }
+    .field-row-2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .field-label { font-size: 1rem; font-weight: 700; color: var(--primary); }
     .field-input, .field-textarea {
-      background: var(--input-bg); border: 1px solid var(--border-color);
-      color: var(--text-main); font-family: 'Kanit', sans-serif; font-size: 0.95rem;
-      padding: 12px 16px; border-radius: 12px; outline: none; width: 100%; transition: border-color 0.2s;
+      background: var(--input-bg); border: 2px solid var(--border-color);
+      color: var(--text-main); font-family: 'Kanit', sans-serif; font-size: 1.05rem;
+      padding: 12px 16px; border-radius: 12px; outline: none; width: 100%;
     }
-    .field-input:focus, .field-textarea:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.2); }
+    .field-input:focus, .field-textarea:focus { border-color: var(--primary); }
     .field-textarea { resize: vertical; min-height: 70px; }
 
-    .time-picker-input {
+    /* Custom Time Picker */
+    .custom-time-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .custom-time-select {
       background: var(--input-bg);
-      border: 1px solid var(--border-color);
+      border: 2px solid var(--border-color);
       color: var(--text-main);
       font-family: 'JetBrains Mono', monospace;
       font-size: 1.15rem;
-      font-weight: 600;
+      font-weight: 700;
       text-align: center;
-      padding: 11px 14px;
+      padding: 10px;
       border-radius: 12px;
       outline: none;
-      width: 100%;
+      flex: 1;
       cursor: pointer;
-      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-align-last: center;
     }
-    .time-picker-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.2);
-    }
-    body.light-mode input[type="time"] { color-scheme: light; }
-    body:not(.light-mode) input[type="time"] { color-scheme: dark; }
+    .custom-time-select:focus { border-color: var(--primary); }
+    body.light-mode .custom-time-select { color: #000000; }
+    .time-colon { font-weight: 800; font-size: 1.2rem; color: var(--text-main); }
 
     .preview-bar {
-      margin-top: 20px; padding: 14px 18px; background: rgba(var(--primary-rgb), 0.05);
-      border: 1px dashed rgba(var(--primary-rgb), 0.3); border-radius: 14px;
+      margin-top: 20px; padding: 14px 18px; background: var(--input-bg);
+      border: 2px dashed var(--border-color); border-radius: 14px;
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
     }
-    .preview-label { font-size: 0.88rem; color: var(--text-muted); font-weight: 500; }
+    .preview-label { font-size: 0.95rem; color: var(--text-main); font-weight: 600; }
     .preview-btns { display: flex; gap: 8px; flex-wrap: wrap; }
     .preview-btn {
-      background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-main);
-      font-family: 'Kanit', sans-serif; font-size: 0.8rem; padding: 6px 14px; border-radius: 99px; cursor: pointer; transition: all 0.2s;
+      background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main);
+      font-family: 'Kanit', sans-serif; font-size: 0.85rem; font-weight: 600; padding: 6px 14px; border-radius: 99px; cursor: pointer;
     }
     .preview-btn:hover { border-color: var(--primary); color: var(--primary); }
 
     .modal-footer {
       display: flex; justify-content: space-between; align-items: center;
-      margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color);
+      margin-top: 24px; padding-top: 20px; border-top: 2px solid var(--border-color);
     }
     .footer-right { display: flex; gap: 12px; }
     .btn-secondary {
-      background: transparent; border: 1px solid var(--border-color); color: var(--text-main);
-      font-family: 'Kanit', sans-serif; font-size: 0.95rem; padding: 10px 22px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s;
+      background: transparent; border: 2px solid var(--border-color); color: var(--text-main);
+      font-family: 'Kanit', sans-serif; font-size: 1rem; font-weight: 600; padding: 10px 22px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px;
     }
-    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      border: none; color: #0c0a09; font-family: 'Kanit', sans-serif; font-size: 1rem;
-      font-weight: 700; padding: 10px 32px; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.4); transition: transform 0.15s;
+      background: var(--primary);
+      border: none; color: #000000; font-family: 'Kanit', sans-serif; font-size: 1.05rem;
+      font-weight: 800; padding: 10px 32px; border-radius: 12px; cursor: pointer;
     }
-    .btn-primary:hover { transform: translateY(-1px); }
 
     @media (max-width: 1100px) {
       .dashboard-top { flex-direction: column; }
       .cards-wrapper { flex-direction: column; }
-      .form-single, .form-ab { grid-template-columns: 1fr; }
-      .ab-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+      .info-grid { grid-template-columns: 1fr 1fr; }
+      .form-single, .form-ab, .field-row-2 { grid-template-columns: 1fr; }
+      .ab-col:first-child { border-right: none; padding-right: 0; border-bottom: 2px solid var(--border-color); padding-bottom: 20px; }
     }
   </style>
 </head>
@@ -663,12 +698,12 @@
     <div class="controls">
       <!-- Theme Color Selector -->
       <div class="pill-group" title="เปลี่ยนธีมสี">
-        <div class="theme-dot active" style="background:#f59e0b; color:#f59e0b;" onclick="setThemeColor('#f59e0b', '245, 158, 11', '#d97706', this)" title="ทอง Hospitality Gold"></div>
-        <div class="theme-dot" style="background:#10f59c; color:#10f59c;" onclick="setThemeColor('#10f59c', '16, 245, 156', '#09b873', this)" title="เขียวมรกต"></div>
-        <div class="theme-dot" style="background:#38bdf8; color:#38bdf8;" onclick="setThemeColor('#38bdf8', '56, 189, 248', '#0284c7', this)" title="ฟ้าพรีเมียม"></div>
-        <div class="theme-dot" style="background:#c084fc; color:#c084fc;" onclick="setThemeColor('#c084fc', '192, 132, 252', '#9333ea', this)" title="ม่วงรอยัล"></div>
-        <div class="theme-dot" style="background:#fb7185; color:#fb7185;" onclick="setThemeColor('#fb7185', '251, 113, 133', '#e11d48', this)" title="โรสโกลด์"></div>
-        <input type="color" id="customColorPicker" class="color-picker-input" value="#f59e0b" onchange="setCustomColor(this.value)" title="เลือกสีเอง">
+        <div class="theme-dot active" style="background:#ffb703;" onclick="setThemeColor('#ffb703', '255, 183, 3', '#fb8500', this)" title="ทองสว่าง (High Contrast Gold)"></div>
+        <div class="theme-dot" style="background:#00f59b;" onclick="setThemeColor('#00f59b', '0, 245, 155', '#00b874', this)" title="เขียวมรกตสว่าง"></div>
+        <div class="theme-dot" style="background:#38bdf8;" onclick="setThemeColor('#38bdf8', '56, 189, 248', '#0284c7', this)" title="ฟ้าสว่าง"></div>
+        <div class="theme-dot" style="background:#c084fc;" onclick="setThemeColor('#c084fc', '192, 132, 252', '#9333ea', this)" title="ม่วงสว่าง"></div>
+        <div class="theme-dot" style="background:#fb7185;" onclick="setThemeColor('#fb7185', '251, 113, 133', '#e11d48', this)" title="ชมพูสว่าง"></div>
+        <input type="color" id="customColorPicker" class="color-picker-input" value="#ffb703" onchange="setCustomColor(this.value)" title="เลือกสีเอง">
       </div>
 
       <!-- Zoom Scale -->
@@ -689,8 +724,8 @@
 
       <!-- Language Switch -->
       <div class="pill-group">
-        <button class="ctrl-btn active" id="langTH" onclick="setLanguage('TH')">🇹🇭 TH</button>
-        <button class="ctrl-btn" id="langEN" onclick="setLanguage('EN')">🇬🇧 EN</button>
+        <button class="ctrl-btn active" id="langTH" onclick="setLanguage('TH')">TH</button>
+        <button class="ctrl-btn" id="langEN" onclick="setLanguage('EN')">EN</button>
       </div>
 
       <!-- Fullscreen -->
@@ -715,7 +750,7 @@
     <div class="dashboard-top">
       <div class="dash-box main-clock-card" id="mainClockBox">
         <div class="main-clock" id="realtimeClock">00 : 00 : 00</div>
-        <div class="date-text" id="realtimeDate">วันศุกร์ที่ 16 ตุลาคม 2569</div>
+        <div class="date-text" id="realtimeDate">วันจันทร์ที่ 19 ตุลาคม 2569</div>
         <div>
           <span class="sub-notice" id="subNoticeText">นิสิตสามารถส่งข้อสอบได้เมื่อเวลาผ่านไป 1 ชั่วโมง</span>
         </div>
@@ -744,7 +779,7 @@
       </div>
     </div>
 
-    <!-- BOTTOM SECTION: Exam Info Cards (ไม่มีชื่อวิชา จัดเรียงสวยงามสมส่วน) -->
+    <!-- BOTTOM SECTION: Exam Info Cards -->
     <div class="cards-wrapper" id="cardsWrapper">
       <!-- Card A -->
       <div class="exam-card" id="cardA">
@@ -767,7 +802,7 @@
             <span class="info-val" id="dispRoomA">-</span>
           </div>
           <div class="info-remark" id="remarkWrapA">
-            <span class="info-label" data-i18n="lblRemark">หมายเหตุ</span>
+            <span class="info-label" data-i18n="lblRemark">หมายเหตุ :</span>
             <span class="info-val" id="dispRemarkA">-</span>
           </div>
         </div>
@@ -794,7 +829,7 @@
             <span class="info-val" id="dispRoomB">-</span>
           </div>
           <div class="info-remark" id="remarkWrapB">
-            <span class="info-label" data-i18n="lblRemark">หมายเหตุ</span>
+            <span class="info-label" data-i18n="lblRemark">หมายเหตุ :</span>
             <span class="info-val" id="dispRemarkB">-</span>
           </div>
         </div>
@@ -822,39 +857,53 @@
 
       <div class="mode-tabs">
         <div class="mode-tab active" id="tabSingle" onclick="switchFormMode('single')" data-i18n="tabSingle">ห้องสอบเดี่ยว</div>
-        <div class="mode-tab" id="tabAB" onclick="switchFormMode('ab')" data-i18n="tabAB">สอบ 2 วิชา</div>
+        <div class="mode-tab" id="tabAB" onclick="switchFormMode('ab')" data-i18n="tabAB">สอบคู่ AB</div>
       </div>
 
       <div class="form-single" id="formSingle">
         <div class="field-group">
           <label class="field-label" data-i18n="lblCourseCode">รหัสวิชา</label>
-          <input type="text" class="field-input" id="s_code" placeholder="เช่น 02XXXXXX">
+          <input type="text" class="field-input" id="s_code" placeholder="เช่น 02804351">
         </div>
         <div class="field-group">
           <label class="field-label" data-i18n="lblSecCombined">หมู่บรรยาย / ปฏิบัติ</label>
-          <input type="text" class="field-input" id="s_sec" placeholder="เช่น บรรยาย: 701 / ปฏิบัติ: -">
+          <input type="text" class="field-input" id="s_sec" placeholder="เช่น 700, 872">
         </div>
+        
         <div class="field-row-2" style="grid-column: span 2;">
           <div class="field-group">
             <label class="field-label" data-i18n="lblStartTime">เวลาเริ่ม</label>
-            <input type="time" class="time-picker-input" id="s_startTime">
+            <div class="custom-time-wrap">
+              <select id="s_startH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="s_startM" class="custom-time-select"></select>
+            </div>
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblEndTime">เวลาสิ้นสุด</label>
-            <input type="time" class="time-picker-input" id="s_endTime">
+            <div class="custom-time-wrap">
+              <select id="s_endH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="s_endM" class="custom-time-select"></select>
+            </div>
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblSubmitTime">ส่งข้อสอบได้เวลา</label>
-            <input type="time" class="time-picker-input" id="s_submitTime">
+            <div class="custom-time-wrap">
+              <select id="s_submitH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="s_submitM" class="custom-time-select"></select>
+            </div>
           </div>
         </div>
+
         <div class="field-group" style="grid-column: span 2;">
           <label class="field-label" data-i18n="lblRoom">ห้องสอบ</label>
-          <input type="text" class="field-input" id="s_room" placeholder="เช่น PXXX">
+          <input type="text" class="field-input" id="s_room" placeholder="เช่น SILLH-103">
         </div>
         <div class="field-group" style="grid-column: 1 / -1;">
           <label class="field-label" data-i18n="lblRemark">หมายเหตุ</label>
-          <textarea class="field-textarea" id="s_remark" placeholder="เช่น รหัสนิสิตตั้งแต่ 6721809999-6721859999"></textarea>
+          <textarea class="field-textarea" id="s_remark" placeholder="เช่น หมู่ 700 รหัส 6721801965-6721802252"></textarea>
         </div>
       </div>
 
@@ -867,23 +916,35 @@
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblSecCombined">หมู่บรรยาย / ปฏิบัติ</label>
-            <input type="text" class="field-input" id="a_sec" placeholder="เช่น 7XX / -">
+            <input type="text" class="field-input" id="a_sec" placeholder="เช่น 700, 872">
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblStartTime">เวลาเริ่ม</label>
-            <input type="time" class="time-picker-input" id="a_startTime">
+            <div class="custom-time-wrap">
+              <select id="a_startH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="a_startM" class="custom-time-select"></select>
+            </div>
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblEndTime">เวลาสิ้นสุด</label>
-            <input type="time" class="time-picker-input" id="a_endTime">
+            <div class="custom-time-wrap">
+              <select id="a_endH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="a_endM" class="custom-time-select"></select>
+            </div>
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblSubmitTime">ส่งข้อสอบได้เวลา</label>
-            <input type="time" class="time-picker-input" id="a_submitTime">
+            <div class="custom-time-wrap">
+              <select id="a_submitH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="a_submitM" class="custom-time-select"></select>
+            </div>
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblRoom">ห้องสอบ</label>
-            <input type="text" class="field-input" id="a_room" placeholder="เช่น PXXX">
+            <input type="text" class="field-input" id="a_room" placeholder="เช่น SILLH-103">
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblRemark">หมายเหตุ</label>
@@ -903,19 +964,31 @@
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblStartTime">เวลาเริ่ม</label>
-            <input type="time" class="time-picker-input" id="b_startTime">
+            <div class="custom-time-wrap">
+              <select id="b_startH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="b_startM" class="custom-time-select"></select>
+            </div>
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblEndTime">เวลาสิ้นสุด</label>
-            <input type="time" class="time-picker-input" id="b_endTime">
+            <div class="custom-time-wrap">
+              <select id="b_endH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="b_endM" class="custom-time-select"></select>
+            </div>
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblSubmitTime">ส่งข้อสอบได้เวลา</label>
-            <input type="time" class="time-picker-input" id="b_submitTime">
+            <div class="custom-time-wrap">
+              <select id="b_submitH" class="custom-time-select"></select>
+              <span class="time-colon">:</span>
+              <select id="b_submitM" class="custom-time-select"></select>
+            </div>
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblRoom">ห้องสอบ</label>
-            <input type="text" class="field-input" id="b_room" placeholder="เช่น PXXX">
+            <input type="text" class="field-input" id="b_room" placeholder="เช่น SILLH-104">
           </div>
           <div class="field-group">
             <label class="field-label" data-i18n="lblRemark">หมายเหตุ</label>
@@ -978,14 +1051,14 @@
         lblExamTime: 'เวลาสอบ',
         lblSecCombined: 'หมู่บรรยาย / ปฏิบัติ',
         lblRoom: 'ห้องสอบ',
-        lblRemark: 'หมายเหตุ',
+        lblRemark: 'หมายเหตุ :',
         lblStartTime: 'เวลาเริ่ม',
         lblEndTime: 'เวลาสิ้นสุด',
         lblSubmitTime: 'ส่งข้อสอบได้เวลา',
         modalTitle: 'แก้ไขข้อมูลการสอบ',
         modalSubtitle: 'คลิกเลือกเวลาหรือกรอกข้อมูลการสอบที่ต้องการแล้วกดยืนยัน',
         tabSingle: 'ห้องสอบเดี่ยว',
-        tabAB: 'สอบ 2 วิชา',
+        tabAB: 'สอบคู่ AB',
         roomA: 'ห้อง A',
         roomB: 'ห้อง B',
         btnClockOnly: 'ล้างข้อมูลการสอบ',
@@ -1021,14 +1094,14 @@
         lblExamTime: 'Exam Time',
         lblSecCombined: 'Lecture / Lab Sec',
         lblRoom: 'Exam Room',
-        lblRemark: 'Remarks',
+        lblRemark: 'Remarks :',
         lblStartTime: 'Start Time',
         lblEndTime: 'End Time',
         lblSubmitTime: 'Allow Submit At',
         modalTitle: 'Edit Exam Information',
         modalSubtitle: 'Select time and click Confirm to update dashboard.',
         tabSingle: 'Single Room',
-        tabAB: 'Dual Room',
+        tabAB: 'Dual Room (AB)',
         roomA: 'Room A',
         roomB: 'Room B',
         btnClockOnly: 'Clear Exam Info',
@@ -1059,14 +1132,31 @@
     const daysEN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const monthsEN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function populateTimeSelects() {
+      const selects = document.querySelectorAll('.custom-time-select');
+      selects.forEach(select => {
+        select.innerHTML = '<option value="">--</option>';
+        const isHour = select.id.endsWith('H');
+        const max = isHour ? 23 : 59;
+        const step = isHour ? 1 : 5;
+        
+        for (let i = 0; i <= max; i += (isHour ? 1 : 1)) {
+          if (!isHour && i % 5 !== 0 && i !== 0) continue;
+          const val = pad(i);
+          select.innerHTML += `<option value="${val}">${val}</option>`;
+        }
+      });
+    }
+
     window.onload = function() {
+      populateTimeSelects();
       localStorage.removeItem('hi_exam_state');
       renderExamCards();
       updateClock();
       setInterval(updateClock, 1000);
     };
-
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
     function playAlertSound(type) {
       if (!soundEnabled) return;
@@ -1078,7 +1168,7 @@
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = wave; osc.frequency.setValueAtTime(freq, start);
-          gain.gain.setValueAtTime(0.2, start);
+          gain.gain.setValueAtTime(0.25, start);
           gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
           osc.connect(gain); gain.connect(ctx.destination);
           osc.start(start); osc.stop(start + duration);
@@ -1101,7 +1191,6 @@
       closeModal();
       const dict = i18n[currentLang];
       const overlay = document.getElementById('alertOverlay');
-      const card = document.getElementById('alertCard');
       const icon = document.getElementById('alertIcon');
       const title = document.getElementById('alertTitle');
       const desc = document.getElementById('alertDesc');
@@ -1171,7 +1260,7 @@
     function updateSingleCountdown(now, roomData, suffix) {
       const box = document.getElementById('cdBox' + suffix);
       if (!hasValidTime(roomData)) { box.style.display = 'none'; return; }
-      box.style.display = 'block';
+      box.style.display = 'flex';
 
       const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), parseInt(roomData.startH), parseInt(roomData.startM), 0);
       const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), parseInt(roomData.endH), parseInt(roomData.endM), 0);
@@ -1242,7 +1331,7 @@
         cardsWrapper.classList.add('ab-active');
         cardB.style.display = 'block'; badgeA.style.display = 'inline-block';
         fillCardData('B', examState.roomB);
-        cdBoxB.style.display = hasValidTime(examState.roomB) ? 'block' : 'none';
+        cdBoxB.style.display = hasValidTime(examState.roomB) ? 'flex' : 'none';
       } else {
         cardsWrapper.classList.remove('ab-active');
         cardB.style.display = 'none'; badgeA.style.display = 'none';
@@ -1264,14 +1353,18 @@
       } else { remarkWrap.style.display = 'none'; }
     }
 
+    function setSelectValue(id, val) {
+      if(val) document.getElementById(id).value = val;
+    }
+
     function openModal() {
       switchFormMode(examState.mode);
       const a = examState.roomA;
       document.getElementById('s_code').value = a.code;
       document.getElementById('s_sec').value = a.sec;
-      document.getElementById('s_startTime').value = (a.startH && a.startM) ? `${a.startH}:${a.startM}` : '';
-      document.getElementById('s_endTime').value = (a.endH && a.endM) ? `${a.endH}:${a.endM}` : '';
-      document.getElementById('s_submitTime').value = (a.submitH && a.submitM) ? `${a.submitH}:${a.submitM}` : '';
+      setSelectValue('s_startH', a.startH); setSelectValue('s_startM', a.startM);
+      setSelectValue('s_endH', a.endH); setSelectValue('s_endM', a.endM);
+      setSelectValue('s_submitH', a.submitH); setSelectValue('s_submitM', a.submitM);
       document.getElementById('s_room').value = a.room;
       document.getElementById('s_remark').value = a.remark;
 
@@ -1279,9 +1372,9 @@
         const room = prefix === 'a' ? examState.roomA : examState.roomB;
         document.getElementById(prefix + '_code').value = room.code;
         document.getElementById(prefix + '_sec').value = room.sec;
-        document.getElementById(prefix + '_startTime').value = (room.startH && room.startM) ? `${room.startH}:${room.startM}` : '';
-        document.getElementById(prefix + '_endTime').value = (room.endH && room.endM) ? `${room.endH}:${room.endM}` : '';
-        document.getElementById(prefix + '_submitTime').value = (room.submitH && room.submitM) ? `${room.submitH}:${room.submitM}` : '';
+        setSelectValue(prefix + '_startH', room.startH); setSelectValue(prefix + '_startM', room.startM);
+        setSelectValue(prefix + '_endH', room.endH); setSelectValue(prefix + '_endM', room.endM);
+        setSelectValue(prefix + '_submitH', room.submitH); setSelectValue(prefix + '_submitM', room.submitM);
         document.getElementById(prefix + '_room').value = room.room;
         document.getElementById(prefix + '_remark').value = room.remark;
       });
@@ -1299,43 +1392,29 @@
       document.getElementById('formAB').style.display = mode === 'ab' ? 'grid' : 'none';
     }
 
-    function parseTimeString(timeStr) {
-      if (!timeStr) return { h: '', m: '' };
-      const parts = timeStr.split(':');
-      return { h: parts[0] || '', m: parts[1] || '' };
-    }
-
     function saveExamData() {
       examState.active = true;
       examState.mode = formMode;
       notifiedFlags = getEmptyNotified();
 
       if (formMode === 'single') {
-        const start = parseTimeString(document.getElementById('s_startTime').value);
-        const end = parseTimeString(document.getElementById('s_endTime').value);
-        const sub = parseTimeString(document.getElementById('s_submitTime').value);
-
         examState.roomA = {
           code: document.getElementById('s_code').value.trim(),
           sec: document.getElementById('s_sec').value.trim(),
-          startH: start.h, startM: start.m,
-          endH: end.h, endM: end.m,
-          submitH: sub.h, submitM: sub.m,
+          startH: document.getElementById('s_startH').value, startM: document.getElementById('s_startM').value,
+          endH: document.getElementById('s_endH').value, endM: document.getElementById('s_endM').value,
+          submitH: document.getElementById('s_submitH').value, submitM: document.getElementById('s_submitM').value,
           room: document.getElementById('s_room').value.trim(),
           remark: document.getElementById('s_remark').value.trim()
         };
       } else {
         ['a', 'b'].forEach(prefix => {
-          const start = parseTimeString(document.getElementById(prefix + '_startTime').value);
-          const end = parseTimeString(document.getElementById(prefix + '_endTime').value);
-          const sub = parseTimeString(document.getElementById(prefix + '_submitTime').value);
-
           examState[prefix === 'a' ? 'roomA' : 'roomB'] = {
             code: document.getElementById(prefix + '_code').value.trim(),
             sec: document.getElementById(prefix + '_sec').value.trim(),
-            startH: start.h, startM: start.m,
-            endH: end.h, endM: end.m,
-            submitH: sub.h, submitM: sub.m,
+            startH: document.getElementById(prefix + '_startH').value, startM: document.getElementById(prefix + '_startM').value,
+            endH: document.getElementById(prefix + '_endH').value, endM: document.getElementById(prefix + '_endM').value,
+            submitH: document.getElementById(prefix + '_submitH').value, submitM: document.getElementById(prefix + '_submitM').value,
             room: document.getElementById(prefix + '_room').value.trim(),
             remark: document.getElementById(prefix + '_remark').value.trim()
           };
