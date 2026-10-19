@@ -10,16 +10,13 @@
   
   <style>
     :root {
-      --primary: #ffb703;
-      --primary-rgb: 255, 183, 3;
-      --primary-dark: #fb8500;
+      /* พื้นหลังและโทนสีหลักของ Dark Mode */
       --bg-color: #000000;
       --card-bg: #0a0a0a;
       --modal-bg: #121212;
       --input-bg: #050505;
       --text-main: #ffffff;
       --text-muted: #d4d4d8;
-      --border-color: rgba(255, 183, 3, 0.55);
       --remark-color: #fde047;
       --remark-bg: rgba(253, 224, 71, 0.12);
       --ui-scale: 1;
@@ -32,7 +29,7 @@
     }
 
     body.light-mode {
-      /* ปลดล็อกการตั้งค่าสีตายตัวออก เพื่อให้สามารถกดเปลี่ยนสีได้ */
+      /* พื้นหลังและโทนสีหลักของ Light Mode */
       --bg-color: #ffffff;
       --card-bg: #f8fafc;
       --modal-bg: #ffffff;
@@ -49,6 +46,25 @@
       --warning-color: #d97706;
       --warning-bg: #fffbeb;
     }
+
+    /* =========================================
+       THEME COLOR PALETTES (แยกสีแต่ละโหมด)
+       ========================================= */
+    body.theme-gold { --primary: #ffb703; --primary-rgb: 255, 183, 3; --border-color: rgba(255, 183, 3, 0.55); }
+    body.theme-gold.light-mode { --primary: #d97706; --primary-rgb: 217, 119, 6; --border-color: #cbd5e1; }
+
+    body.theme-green { --primary: #00f59b; --primary-rgb: 0, 245, 155; --border-color: rgba(0, 245, 155, 0.4); }
+    body.theme-green.light-mode { --primary: #059669; --primary-rgb: 5, 150, 105; --border-color: #cbd5e1; }
+
+    body.theme-blue { --primary: #38bdf8; --primary-rgb: 56, 189, 248; --border-color: rgba(56, 189, 248, 0.4); }
+    body.theme-blue.light-mode { --primary: #0284c7; --primary-rgb: 2, 132, 199; --border-color: #cbd5e1; }
+
+    body.theme-purple { --primary: #c084fc; --primary-rgb: 192, 132, 252; --border-color: rgba(192, 132, 252, 0.4); }
+    body.theme-purple.light-mode { --primary: #7e22ce; --primary-rgb: 126, 34, 206; --border-color: #cbd5e1; }
+
+    body.theme-pink { --primary: #fb7185; --primary-rgb: 251, 113, 133; --border-color: rgba(251, 113, 133, 0.4); }
+    body.theme-pink.light-mode { --primary: #e11d48; --primary-rgb: 225, 29, 72; --border-color: #cbd5e1; }
+
 
     * {
       box-sizing: border-box;
@@ -79,6 +95,7 @@
       z-index: 10;
       border-bottom: 2px solid var(--border-color);
       background: var(--card-bg);
+      transition: border-color 0.3s;
     }
 
     .brand {
@@ -95,6 +112,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.3s;
     }
 
     .brand-logo-text {
@@ -103,6 +121,7 @@
       color: #000000;
       letter-spacing: -0.5px;
     }
+    body.light-mode .brand-logo-text { color: #ffffff; }
 
     .brand-info {
       display: flex;
@@ -122,6 +141,7 @@
       font-weight: 600;
       color: var(--primary);
       margin-top: 2px;
+      transition: color 0.3s;
     }
 
     .brand-appname {
@@ -147,6 +167,7 @@
       border-radius: 999px;
       padding: 4px 12px;
       gap: 8px;
+      transition: border-color 0.3s, background 0.3s;
     }
 
     .ctrl-btn {
@@ -175,8 +196,8 @@
       color: #000000;
       font-weight: 700;
     }
+    body.light-mode .ctrl-btn.active { color: #ffffff; }
 
-    /* Theme Color Dots */
     .theme-dot {
       width: 22px;
       height: 22px;
@@ -186,23 +207,9 @@
       transition: transform 0.2s;
     }
 
-    .theme-dot:hover {
-      transform: scale(1.2);
-    }
-
-    .theme-dot.active {
-      border-color: var(--text-main);
-      transform: scale(1.15);
-    }
-
-    .color-picker-input {
-      width: 24px;
-      height: 24px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      padding: 0;
-    }
+    .theme-dot:hover { transform: scale(1.2); }
+    .theme-dot.active { border-color: var(--text-main); transform: scale(1.15); }
+    .color-picker-input { width: 24px; height: 24px; border: none; background: none; cursor: pointer; padding: 0; }
 
     /* ===== MAIN DASHBOARD AREA ===== */
     .main-area {
@@ -240,6 +247,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      transition: border-color 0.3s;
     }
 
     .main-clock-card {
@@ -253,6 +261,7 @@
       color: var(--primary);
       line-height: 1;
       letter-spacing: -2px;
+      transition: color 0.3s;
     }
 
     .no-exam-mode .main-clock {
@@ -278,6 +287,7 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
+      transition: border-color 0.3s, background 0.3s;
     }
 
     .sub-notice.can-submit {
@@ -319,7 +329,9 @@
       padding: 2px 16px;
       border-radius: 99px;
       margin-bottom: 6px;
+      transition: background 0.3s;
     }
+    body.light-mode .cd-room-tag { color: #ffffff; }
 
     .cd-title {
       font-size: 1.65rem;
@@ -332,9 +344,38 @@
       font-size: 4.4rem;
       font-weight: 800;
       color: var(--primary);
-      margin: 4px 0;
+      margin: 0;
       line-height: 1.1;
       transition: color 0.3s ease;
+    }
+
+    /* ===== CSS ANIMATION สำหรับ Emoji ===== */
+    .cd-emoji {
+      font-size: 2.8rem;
+      margin: 6px 0 10px 0;
+      display: inline-block;
+      line-height: 1;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .emoji-chill { animation: bounceChill 2.5s infinite ease-in-out; }
+    .emoji-warn15 { animation: bounceNervous 0.8s infinite ease-in-out; }
+    .emoji-warn5 { animation: shakePanic 0.15s infinite ease-in-out; }
+    .emoji-timeup { animation: none; transform: scale(1.2); }
+
+    @keyframes bounceChill {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes bounceNervous {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-5px) rotate(-8deg); }
+      75% { transform: translateY(-5px) rotate(8deg); }
+    }
+    @keyframes shakePanic {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px) rotate(-5deg) scale(1.1); }
+      75% { transform: translateX(6px) rotate(5deg) scale(1.1); }
     }
 
     .cd-status {
@@ -362,42 +403,18 @@
     }
 
     /* สไตล์แจ้งเตือนเวลา (15 นาที และ 5 นาที) */
-    .countdown-box.warn-15 { 
-        border-color: var(--warning-color); 
-        background: var(--warning-bg); 
-    }
-    .countdown-box.warn-15 .cd-timer, 
-    .countdown-box.warn-15 .cd-status { 
-        color: var(--warning-color); 
-    }
-    .countdown-box.warn-15 .cd-progress-bar { 
-        background: var(--warning-color); 
-    }
+    .countdown-box.warn-15 { border-color: var(--warning-color); background: var(--warning-bg); }
+    .countdown-box.warn-15 .cd-timer, .countdown-box.warn-15 .cd-status { color: var(--warning-color); }
+    .countdown-box.warn-15 .cd-progress-bar { background: var(--warning-color); }
 
     /* 5 นาทีสุดท้าย: สีแดงเข้ม เด่นชัด กระพริบ */
-    .countdown-box.warn-5 { 
-        border-color: var(--danger-color); 
-        background: var(--danger-bg); 
-    }
-    .countdown-box.warn-5 .cd-timer, 
-    .countdown-box.warn-5 .cd-status { 
-        color: var(--danger-color); 
-        animation: urgentBlinkRed 1s infinite alternate; 
-    }
-    .countdown-box.warn-5 .cd-progress-bar { 
-        background: var(--danger-color); 
-    }
+    .countdown-box.warn-5 { border-color: var(--danger-color); background: var(--danger-bg); }
+    .countdown-box.warn-5 .cd-timer, .countdown-box.warn-5 .cd-status { color: var(--danger-color); animation: urgentBlinkRed 1s infinite alternate; }
+    .countdown-box.warn-5 .cd-progress-bar { background: var(--danger-color); }
 
-    .countdown-box.time-up { 
-        border-color: var(--danger-color); 
-    }
-    .countdown-box.time-up .cd-timer, 
-    .countdown-box.time-up .cd-status { 
-        color: var(--danger-color); 
-    }
-    .countdown-box.time-up .cd-progress-bar { 
-        background: var(--danger-color); 
-    }
+    .countdown-box.time-up { border-color: var(--danger-color); }
+    .countdown-box.time-up .cd-timer, .countdown-box.time-up .cd-status { color: var(--danger-color); }
+    .countdown-box.time-up .cd-progress-bar { background: var(--danger-color); }
 
     /* BOTTOM SECTION: Exam Info Cards */
     .cards-wrapper {
@@ -414,6 +431,7 @@
       border-radius: 24px;
       padding: 26px 40px;
       position: relative;
+      transition: border-color 0.3s;
     }
 
     .card-badge {
@@ -426,7 +444,9 @@
       border-radius: 99px;
       font-size: 1.1rem;
       font-weight: 800;
+      transition: background 0.3s;
     }
+    body.light-mode .card-badge { color: #ffffff; }
 
     .info-grid {
       display: grid;
@@ -436,16 +456,14 @@
       align-items: start;
     }
 
-    .info-item {
-      display: flex;
-      flex-direction: column;
-    }
+    .info-item { display: flex; flex-direction: column; }
 
     .info-label {
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--primary);
       margin-bottom: 4px;
+      transition: color 0.3s;
     }
 
     .info-val {
@@ -456,13 +474,8 @@
       word-break: break-word;
     }
 
-    .ab-active .info-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .ab-active .info-val {
-      font-size: 2rem;
-    }
+    .ab-active .info-grid { grid-template-columns: 1fr 1fr; }
+    .ab-active .info-val { font-size: 2rem; }
 
     .info-remark {
       grid-column: 1 / -1;
@@ -477,23 +490,9 @@
       gap: 16px;
     }
 
-    .info-remark .info-label {
-      margin-bottom: 0;
-      font-size: 1.35rem;
-      color: var(--remark-color);
-      white-space: nowrap;
-    }
-
-    .info-remark .info-val {
-      color: var(--remark-color);
-      font-size: 1.9rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    .ab-active .info-remark .info-val {
-      font-size: 1.5rem;
-    }
+    .info-remark .info-label { margin-bottom: 0; font-size: 1.35rem; color: var(--remark-color); white-space: nowrap; }
+    .info-remark .info-val { color: var(--remark-color); font-size: 1.9rem; font-weight: 700; line-height: 1.3; }
+    .ab-active .info-remark .info-val { font-size: 1.5rem; }
 
     @keyframes urgentBlinkRed {
       from { opacity: 1; transform: scale(1); }
@@ -506,48 +505,29 @@
 
     /* ===== ANIMATION ALERT OVERLAY ===== */
     .alert-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.88);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 250;
-      padding: 20px;
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88);
+      display: none; justify-content: center; align-items: center;
+      z-index: 250; padding: 20px;
     }
-
-    .alert-overlay.show {
-      display: flex;
-      animation: fadeInOverlay 0.3s ease forwards;
-    }
+    .alert-overlay.show { display: flex; animation: fadeInOverlay 0.3s ease forwards; }
 
     .alert-card {
-      background: var(--modal-bg);
-      border: 4px solid var(--primary);
-      border-radius: 28px;
-      padding: 48px 60px;
-      text-align: center;
-      max-width: 820px;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
+      background: var(--modal-bg); border: 4px solid var(--primary);
+      border-radius: 28px; padding: 48px 60px; text-align: center;
+      max-width: 820px; width: 100%; position: relative; overflow: hidden;
       animation: popBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
     .alert-icon { font-size: 6rem; line-height: 1; margin-bottom: 18px; display: inline-block; }
-    .alert-title { font-size: 3.2rem; font-weight: 800; margin-bottom: 12px; color: var(--primary); }
+    .alert-title { font-size: 3.2rem; font-weight: 800; margin-bottom: 12px; color: var(--primary); transition: color 0.3s; }
     .alert-desc { font-size: 1.8rem; font-weight: 600; color: var(--text-main); margin-bottom: 30px; }
     .alert-close-btn {
-      background: var(--primary);
-      border: none;
-      color: #000000;
-      font-family: 'Kanit', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 800;
-      padding: 12px 36px;
-      border-radius: 99px;
-      cursor: pointer;
+      background: var(--primary); border: none; color: #000000;
+      font-family: 'Kanit', sans-serif; font-size: 1.3rem; font-weight: 800;
+      padding: 12px 36px; border-radius: 99px; cursor: pointer; transition: background 0.3s;
     }
+    body.light-mode .alert-close-btn { color: #ffffff; }
+    
     .alert-timer-bar {
       position: absolute; bottom: 0; left: 0; height: 10px; width: 100%;
       background: var(--primary); transform-origin: left;
@@ -565,79 +545,61 @@
     /* ===== SETTINGS MODAL ===== */
     .modal-backdrop {
       position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
-      display: none; justify-content: center;
-      align-items: center; z-index: 100; padding: 20px;
+      display: none; justify-content: center; align-items: center; z-index: 100; padding: 20px;
     }
     .modal-backdrop.show { display: flex; }
     .modal-content {
       background: var(--modal-bg); border: 2px solid var(--border-color);
       border-radius: 24px; width: 100%; max-width: 900px; max-height: 94vh;
-      overflow-y: auto; padding: 32px; position: relative;
+      overflow-y: auto; padding: 32px; position: relative; transition: border-color 0.3s;
     }
     .modal-close {
       position: absolute; top: 24px; right: 28px; background: none; border: none;
       color: var(--text-muted); font-size: 1.8rem; cursor: pointer;
     }
-    .modal-title { font-size: 1.85rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .modal-title { font-size: 1.85rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; transition: color 0.3s; }
     .modal-subtitle { font-size: 1rem; color: var(--text-muted); margin-bottom: 20px; }
 
     .mode-tabs {
       display: flex; background: var(--input-bg); border: 2px solid var(--border-color);
-      border-radius: 14px; padding: 6px; margin-bottom: 24px;
+      border-radius: 14px; padding: 6px; margin-bottom: 24px; transition: border-color 0.3s;
     }
     .mode-tab {
       flex: 1; text-align: center; padding: 12px; border-radius: 10px;
       font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all 0.2s;
     }
-    .mode-tab.active {
-      background: var(--primary);
-      color: #000000;
-    }
+    .mode-tab.active { background: var(--primary); color: #000000; }
+    body.light-mode .mode-tab.active { color: #ffffff; }
 
     .form-single { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; row-gap: 16px; }
     .form-ab { display: none; grid-template-columns: 1fr 1fr; gap: 28px; }
     .ab-col { display: flex; flex-direction: column; gap: 14px; }
-    .ab-col:first-child { border-right: 2px solid var(--border-color); padding-right: 28px; }
+    .ab-col:first-child { border-right: 2px solid var(--border-color); padding-right: 28px; transition: border-color 0.3s; }
 
     .room-pill {
-      display: inline-block; align-self: flex-start;
-      background: var(--primary); color: #000000;
-      padding: 4px 16px; border-radius: 99px; font-weight: 800; font-size: 0.95rem;
+      display: inline-block; align-self: flex-start; background: var(--primary); color: #000000;
+      padding: 4px 16px; border-radius: 99px; font-weight: 800; font-size: 0.95rem; transition: background 0.3s;
     }
+    body.light-mode .room-pill { color: #ffffff; }
+    
     .field-group { display: flex; flex-direction: column; gap: 6px; }
     .field-row-2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-    .field-label { font-size: 1rem; font-weight: 700; color: var(--primary); }
+    .field-label { font-size: 1rem; font-weight: 700; color: var(--primary); transition: color 0.3s; }
     .field-input, .field-textarea {
       background: var(--input-bg); border: 2px solid var(--border-color);
       color: var(--text-main); font-family: 'Kanit', sans-serif; font-size: 1.05rem;
-      padding: 12px 16px; border-radius: 12px; outline: none; width: 100%;
+      padding: 12px 16px; border-radius: 12px; outline: none; width: 100%; transition: border-color 0.3s;
     }
     .field-input:focus, .field-textarea:focus { border-color: var(--primary); }
     .field-textarea { resize: vertical; min-height: 70px; }
 
     /* Custom Time Picker */
-    .custom-time-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .custom-time-wrap { display: flex; align-items: center; gap: 8px; }
     .custom-time-select {
-      background: var(--input-bg);
-      border: 2px solid var(--border-color);
-      color: var(--text-main);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.15rem;
-      font-weight: 700;
-      text-align: center;
-      padding: 10px;
-      border-radius: 12px;
-      outline: none;
-      flex: 1;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      text-align-last: center;
+      background: var(--input-bg); border: 2px solid var(--border-color); color: var(--text-main);
+      font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 700; text-align: center;
+      padding: 10px; border-radius: 12px; outline: none; flex: 1; cursor: pointer;
+      appearance: none; -webkit-appearance: none; -moz-appearance: none; text-align-last: center; transition: border-color 0.3s;
     }
     .custom-time-select:focus { border-color: var(--primary); }
     body.light-mode .custom-time-select { color: #000000; }
@@ -646,30 +608,31 @@
     .preview-bar {
       margin-top: 20px; padding: 14px 18px; background: var(--input-bg);
       border: 2px dashed var(--border-color); border-radius: 14px;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; transition: border-color 0.3s;
     }
     .preview-label { font-size: 0.95rem; color: var(--text-main); font-weight: 600; }
     .preview-btns { display: flex; gap: 8px; flex-wrap: wrap; }
     .preview-btn {
       background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main);
       font-family: 'Kanit', sans-serif; font-size: 0.85rem; font-weight: 600; padding: 6px 14px; border-radius: 99px; cursor: pointer;
+      transition: border-color 0.3s, color 0.3s;
     }
     .preview-btn:hover { border-color: var(--primary); color: var(--primary); }
 
     .modal-footer {
       display: flex; justify-content: space-between; align-items: center;
-      margin-top: 24px; padding-top: 20px; border-top: 2px solid var(--border-color);
+      margin-top: 24px; padding-top: 20px; border-top: 2px solid var(--border-color); transition: border-color 0.3s;
     }
     .footer-right { display: flex; gap: 12px; }
     .btn-secondary {
       background: transparent; border: 2px solid var(--border-color); color: var(--text-main);
-      font-family: 'Kanit', sans-serif; font-size: 1rem; font-weight: 600; padding: 10px 22px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+      font-family: 'Kanit', sans-serif; font-size: 1rem; font-weight: 600; padding: 10px 22px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: border-color 0.3s;
     }
     .btn-primary {
-      background: var(--primary);
-      border: none; color: #000000; font-family: 'Kanit', sans-serif; font-size: 1.05rem;
-      font-weight: 800; padding: 10px 32px; border-radius: 12px; cursor: pointer;
+      background: var(--primary); border: none; color: #000000; font-family: 'Kanit', sans-serif; font-size: 1.05rem;
+      font-weight: 800; padding: 10px 32px; border-radius: 12px; cursor: pointer; transition: background 0.3s;
     }
+    body.light-mode .btn-primary { color: #ffffff; }
 
     @media (max-width: 1100px) {
       .dashboard-top { flex-direction: column; }
@@ -680,7 +643,7 @@
     }
   </style>
 </head>
-<body class="no-exam-mode">
+<body class="no-exam-mode theme-gold">
 
   <!-- ===== TOP NAVBAR ===== -->
   <header class="navbar">
@@ -698,11 +661,11 @@
     <div class="controls">
       <!-- Theme Color Selector -->
       <div class="pill-group" title="เปลี่ยนธีมสี">
-        <div class="theme-dot active" style="background:#ffb703;" onclick="setThemeColor('#ffb703', '255, 183, 3', '#fb8500', this)" title="ทองสว่าง (High Contrast Gold)"></div>
-        <div class="theme-dot" style="background:#00f59b;" onclick="setThemeColor('#00f59b', '0, 245, 155', '#00b874', this)" title="เขียวมรกตสว่าง"></div>
-        <div class="theme-dot" style="background:#38bdf8;" onclick="setThemeColor('#38bdf8', '56, 189, 248', '#0284c7', this)" title="ฟ้าสว่าง"></div>
-        <div class="theme-dot" style="background:#c084fc;" onclick="setThemeColor('#c084fc', '192, 132, 252', '#9333ea', this)" title="ม่วงสว่าง"></div>
-        <div class="theme-dot" style="background:#fb7185;" onclick="setThemeColor('#fb7185', '251, 113, 133', '#e11d48', this)" title="ชมพูสว่าง"></div>
+        <div class="theme-dot active" style="background:#ffb703;" onclick="setThemeClass('gold', this)" title="ทอง (Gold)"></div>
+        <div class="theme-dot" style="background:#00f59b;" onclick="setThemeClass('green', this)" title="เขียว (Green)"></div>
+        <div class="theme-dot" style="background:#38bdf8;" onclick="setThemeClass('blue', this)" title="ฟ้า (Blue)"></div>
+        <div class="theme-dot" style="background:#c084fc;" onclick="setThemeClass('purple', this)" title="ม่วง (Purple)"></div>
+        <div class="theme-dot" style="background:#fb7185;" onclick="setThemeClass('pink', this)" title="ชมพู (Pink)"></div>
         <input type="color" id="customColorPicker" class="color-picker-input" value="#ffb703" onchange="setCustomColor(this.value)" title="เลือกสีเอง">
       </div>
 
@@ -761,6 +724,8 @@
           <div class="cd-room-tag" id="cdTagA" style="display:none;">ห้อง A</div>
           <div class="cd-title" id="cdTitleA">เวลาจนถึงเริ่มสอบ</div>
           <div class="cd-timer" id="cdTimerA">00:00:00</div>
+          <!-- Emoji Animation สำหรับห้อง A -->
+          <div class="cd-emoji emoji-chill" id="cdEmojiA">⏳😴</div>
           <div class="cd-status" id="cdStatusA">รอเวลาสอบ</div>
           <div class="cd-progress-bg">
             <div class="cd-progress-bar" id="cdBarA"></div>
@@ -771,6 +736,8 @@
           <div class="cd-room-tag" id="cdTagB">ห้อง B</div>
           <div class="cd-title" id="cdTitleB">เวลาจนถึงเริ่มสอบ</div>
           <div class="cd-timer" id="cdTimerB">00:00:00</div>
+          <!-- Emoji Animation สำหรับห้อง B -->
+          <div class="cd-emoji emoji-chill" id="cdEmojiB">⏳😴</div>
           <div class="cd-status" id="cdStatusB">รอเวลาสอบ</div>
           <div class="cd-progress-bg">
             <div class="cd-progress-bar" id="cdBarB"></div>
@@ -1140,9 +1107,8 @@
         select.innerHTML = '<option value="">--</option>';
         const isHour = select.id.endsWith('H');
         const max = isHour ? 23 : 59;
-        const step = isHour ? 1 : 5;
         
-        for (let i = 0; i <= max; i += (isHour ? 1 : 1)) {
+        for (let i = 0; i <= max; i++) {
           if (!isHour && i % 5 !== 0 && i !== 0) continue;
           const val = pad(i);
           select.innerHTML += `<option value="${val}">${val}</option>`;
@@ -1277,6 +1243,7 @@
       const timerEl = document.getElementById('cdTimer' + suffix);
       const statusEl = document.getElementById('cdStatus' + suffix);
       const barEl = document.getElementById('cdBar' + suffix);
+      const emojiEl = document.getElementById('cdEmoji' + suffix);
       const dict = i18n[currentLang];
 
       if (now < start) {
@@ -1284,7 +1251,12 @@
         const diffSec = Math.ceil((start - now) / 1000);
         titleEl.textContent = dict.untilStart;
         timerEl.textContent = `${pad(Math.floor(diffSec / 3600))}:${pad(Math.floor((diffSec % 3600) / 60))}:${pad(diffSec % 60)}`;
-        statusEl.textContent = dict.waitingExam; barEl.style.width = '100%';
+        statusEl.textContent = dict.waitingExam; 
+        barEl.style.width = '100%';
+        
+        emojiEl.textContent = '⏳😴';
+        emojiEl.className = 'cd-emoji emoji-chill';
+        
       } else if (now >= start && now < end) {
         const totalSec = Math.max(1, Math.floor((end - start) / 1000));
         const remainSec = Math.ceil((end - now) / 1000);
@@ -1295,12 +1267,34 @@
         if (remainSec === 900 && !notifiedFlags[suffix].m15) { notifiedFlags[suffix].m15 = true; triggerExamAlert('warn15', suffix); }
         if (remainSec === 300 && !notifiedFlags[suffix].m5) { notifiedFlags[suffix].m5 = true; triggerExamAlert('warn5', suffix); }
 
-        if (remainSec <= 300) { box.className = 'countdown-box warn-5'; statusEl.textContent = dict.warn5Status; }
-        else if (remainSec <= 900) { box.className = 'countdown-box warn-15'; statusEl.textContent = dict.warn15Status; }
-        else { box.className = 'countdown-box'; statusEl.textContent = dict.inProgress; }
+        if (remainSec <= 300) { 
+            box.className = 'countdown-box warn-5'; 
+            statusEl.textContent = dict.warn5Status; 
+            emojiEl.textContent = '🔥✍️🔥😱';
+            emojiEl.className = 'cd-emoji emoji-warn5';
+        }
+        else if (remainSec <= 900) { 
+            box.className = 'countdown-box warn-15'; 
+            statusEl.textContent = dict.warn15Status; 
+            emojiEl.textContent = '📝💦😰';
+            emojiEl.className = 'cd-emoji emoji-warn15';
+        }
+        else { 
+            box.className = 'countdown-box'; 
+            statusEl.textContent = dict.inProgress; 
+            emojiEl.textContent = '📝😌';
+            emojiEl.className = 'cd-emoji emoji-chill';
+        }
       } else {
-        box.className = 'countdown-box time-up'; titleEl.textContent = dict.examEnded;
-        timerEl.textContent = `00:00:00`; statusEl.textContent = dict.completed; barEl.style.width = '0%';
+        box.className = 'countdown-box time-up'; 
+        titleEl.textContent = dict.examEnded;
+        timerEl.textContent = `00:00:00`; 
+        statusEl.textContent = dict.completed; 
+        barEl.style.width = '0%';
+        
+        emojiEl.textContent = '🛑🙌';
+        emojiEl.className = 'cd-emoji emoji-timeup';
+        
         if (Math.floor((now - end) / 1000) >= 0 && Math.floor((now - end) / 1000) <= 2 && !notifiedFlags[suffix].end) {
           notifiedFlags[suffix].end = true; triggerExamAlert('timeup', suffix);
         }
@@ -1429,18 +1423,24 @@
       renderExamCards(); closeModal();
     }
 
-    function setThemeColor(hex, rgb, darkHex, dotEl) {
-      document.documentElement.style.setProperty('--primary', hex);
-      document.documentElement.style.setProperty('--primary-rgb', rgb);
-      document.documentElement.style.setProperty('--primary-dark', darkHex);
-      document.getElementById('customColorPicker').value = hex;
+    function setThemeClass(themeName, dotEl) {
+      document.documentElement.style.removeProperty('--primary');
+      document.documentElement.style.removeProperty('--primary-rgb');
+      
+      document.body.classList.remove('theme-gold', 'theme-green', 'theme-blue', 'theme-purple', 'theme-pink');
+      document.body.classList.add('theme-' + themeName);
+      
+      document.getElementById('customColorPicker').value = '#000000';
       document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
       if (dotEl) dotEl.classList.add('active');
     }
 
     function setCustomColor(hex) {
+      document.body.classList.remove('theme-gold', 'theme-green', 'theme-blue', 'theme-purple', 'theme-pink');
       const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
-      setThemeColor(hex, `${r}, ${g}, ${b}`, `rgb(${Math.max(0,r-40)},${Math.max(0,g-40)},${Math.max(0,b-40)})`, null);
+      document.documentElement.style.setProperty('--primary', hex);
+      document.documentElement.style.setProperty('--primary-rgb', `${r}, ${g}, ${b}`);
+      document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
     }
 
     function toggleLightMode() {
