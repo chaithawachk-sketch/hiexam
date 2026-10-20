@@ -1126,24 +1126,32 @@
 
     function playAlertSound(type) {
       if (!soundEnabled) return;
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        const ctx = new AudioCtx();
-        const now = ctx.currentTime;
-        function playTone(freq, start, duration, wave = 'sine') {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = wave; osc.frequency.setValueAtTime(freq, start);
-          gain.gain.setValueAtTime(0.25, start);
-          gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
-          osc.connect(gain); gain.connect(ctx.destination);
-          osc.start(start); osc.stop(start + duration);
-        }
-        if (type === 'submit') { playTone(587.33, now, 0.25); playTone(880, now + 0.22, 0.55); }
-        else if (type === 'warn15') { playTone(659.25, now, 0.22); playTone(659.25, now + 0.28, 0.35); }
-        else if (type === 'warn5') { playTone(783.99, now, 0.18, 'triangle'); playTone(783.99, now + 0.22, 0.18, 'triangle'); playTone(1046.5, now + 0.44, 0.4, 'triangle'); }
-        else if (type === 'timeup') { playTone(880, now, 0.3, 'sawtooth'); playTone(880, now + 0.35, 0.3, 'sawtooth'); playTone(880, now + 0.7, 0.7, 'sawtooth'); }
-      } catch (e) {}
+      
+      // เรียกใช้งานไฟล์เสียง .mp3 ตามประเภทของการแจ้งเตือน
+      const audio = new Audio(type + '.mp3');
+      
+      audio.play().catch(err => {
+        console.log('ยังไม่พบไฟล์เสียง .mp3 ระบบจะใช้เสียง Beep สำรอง:', err);
+        // ระบบเสียง Beep สำรอง (กรณีหาไฟล์ .mp3 ไม่เจอหรือไม่สามารถเล่นได้)
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          const ctx = new AudioCtx();
+          const now = ctx.currentTime;
+          function playTone(freq, start, duration, wave = 'sine') {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = wave; osc.frequency.setValueAtTime(freq, start);
+            gain.gain.setValueAtTime(0.25, start);
+            gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.start(start); osc.stop(start + duration);
+          }
+          if (type === 'submit') { playTone(587.33, now, 0.25); playTone(880, now + 0.22, 0.55); }
+          else if (type === 'warn15') { playTone(659.25, now, 0.22); playTone(659.25, now + 0.28, 0.35); }
+          else if (type === 'warn5') { playTone(783.99, now, 0.18, 'triangle'); playTone(783.99, now + 0.22, 0.18, 'triangle'); playTone(1046.5, now + 0.44, 0.4, 'triangle'); }
+          else if (type === 'timeup') { playTone(880, now, 0.3, 'sawtooth'); playTone(880, now + 0.35, 0.3, 'sawtooth'); playTone(880, now + 0.7, 0.7, 'sawtooth'); }
+        } catch (e) {}
+      });
     }
 
     function toggleSound() {
