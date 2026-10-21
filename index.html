@@ -994,6 +994,30 @@
     let formMode = 'single';
     let soundEnabled = true;
     let alertTimeout = null;
+    
+    // ตัวแปรเก็บความคลาดเคลื่อนของเวลา (มิลลิวินาที)
+    let timeOffsetMs = 0;
+    
+    // ฟังก์ชันดึงเวลามาตรฐานจาก API แบบ Auto Sync
+    async function syncWorldTime() {
+      try {
+        const response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Bangkok');
+        if (response.ok) {
+          const data = await response.json();
+          const serverTime = new Date(data.datetime).getTime();
+          const localTime = new Date().getTime();
+          timeOffsetMs = serverTime - localTime;
+          console.log('ซิงค์เวลามาตรฐานสำเร็จ (Offset: ' + timeOffsetMs + ' ms)');
+        }
+      } catch (err) {
+        console.warn('ไม่สามารถซิงค์เวลาจากอินเทอร์เน็ตได้ ระบบจะใช้เวลาจากเครื่องคอมพิวเตอร์แทน', err);
+      }
+    }
+    
+    // ฟังก์ชันขอเวลาปัจจุบันที่บวกความคลาดเคลื่อนแล้ว
+    function getAccurateTime() {
+      return new Date(new Date().getTime() + timeOffsetMs);
+    }
 
     function getEmptyRoom() {
       return { code: '', sec: '', startH: '', startM: '', endH: '', endM: '', submitH: '', submitM: '', room: '', remark: '' };
@@ -1117,6 +1141,7 @@
     }
 
     window.onload = function() {
+      syncWorldTime(); // ดึงเวลามาตรฐานสากลเมื่อเปิดหน้าเว็บ
       populateTimeSelects();
       localStorage.removeItem('hi_exam_state');
       renderExamCards();
@@ -1127,12 +1152,11 @@
     function playAlertSound(type) {
       if (!soundEnabled) return;
       
-      // เรียกใช้งานไฟล์เสียง .mp3 ตามประเภทของการแจ้งเตือน
-      const audio = new Audio(type + '.mp3');
+      // เรียกใช้งานไฟล์เสียง MP3 ตัวพิมพ์ใหญ่ (เช่น submit.MP3)
+      const audio = new Audio(type + '.MP3');
       
       audio.play().catch(err => {
-        console.log('ยังไม่พบไฟล์เสียง .mp3 ระบบจะใช้เสียง Beep สำรอง:', err);
-        // ระบบเสียง Beep สำรอง (กรณีหาไฟล์ .mp3 ไม่เจอหรือไม่สามารถเล่นได้)
+        console.log('ไม่พบไฟล์ .MP3 จะใช้เสียง Beep สำรองแทน:', err);
         try {
           const AudioCtx = window.AudioContext || window.webkitAudioContext;
           const ctx = new AudioCtx();
@@ -1186,7 +1210,9 @@
     function closeAlertOverlay() { document.getElementById('alertOverlay').classList.remove('show'); if (alertTimeout) clearTimeout(alertTimeout); }
 
     function updateClock() {
-      const now = new Date();
+      // เรียกใช้ getAccurateTime() เพื่อให้เวลาตรงกับสากลเสมอ
+      const now = getAccurateTime();
+      
       const h = pad(now.getHours());
       const m = pad(now.getMinutes());
       const s = pad(now.getSeconds());
